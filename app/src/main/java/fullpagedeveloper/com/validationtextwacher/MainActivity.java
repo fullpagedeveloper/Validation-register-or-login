@@ -188,7 +188,7 @@ public class MainActivity extends AppCompatActivity {
             confirmPasswordLayout.setError("Masukan konfirmasi kata sandi.");
             confirmPasswordUser.requestFocus();
             return false;
-        } else if (passwordUser.getText().toString().length() < 6) {
+        } else if (confirmPasswordUser.getText().toString().length() < 6) {
             confirmPasswordLayout.setError("Password can't be than 6 digit");
             confirmPasswordUser.requestFocus();
             return false;
