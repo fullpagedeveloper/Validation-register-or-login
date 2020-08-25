@@ -21,6 +21,8 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
         MaterialButton submit = findViewById(R.id.textView_Enter);
 
         //TextInputLayout
@@ -47,11 +49,41 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                if (!validationNameUser() && !validationPhone() && !validationEmail() && !validationPassword() && !validationConfirmPassword()) {
-                    return;
-                }
+                //check semua edittext
+                //validationAllEdittext();
+
+                //check validation satu per satu
+                valudationOneByOne();
             }
         });
+    }
+
+    private void valudationOneByOne() {
+        if (!validationNameUser()){
+            return;
+        }
+
+        if (!validationPhone()){
+            return;
+        }
+
+        if (!validationEmail()){
+            return;
+        }
+
+        if (!validationPassword()){
+            return;
+        }
+
+        if (!validationConfirmPassword()){
+            return;
+        }
+    }
+
+    private void validationAllEdittext() {
+        if (!validationNameUser() && !validationPhone() && !validationEmail() && !validationPassword() && !validationConfirmPassword()) {
+            return;
+        }
     }
 
 
@@ -157,13 +189,12 @@ public class MainActivity extends AppCompatActivity {
             confirmPasswordUser.requestFocus();
             return false;
         } else if (passwordUser.getText().toString().length() < 6) {
-            passwordLayout.setError("Password can't be than 6 digit");
-            passwordUser.requestFocus();
+            confirmPasswordLayout.setError("Password can't be than 6 digit");
+            confirmPasswordUser.requestFocus();
             return false;
         } else {
             confirmPasswordLayout.setErrorEnabled(false);
         }
-
         return true;
     }
 
